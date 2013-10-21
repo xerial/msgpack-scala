@@ -18,8 +18,10 @@
 package org.msgpack
 
 import java.util.{Date, Calendar}
-import org.specs2.mutable.SpecificationWithJUnit
+import org.specs2.mutable.{Tags, SpecificationWithJUnit}
 import org.specs2.matcher.{MatchResult, Expectable, Matcher}
+import org.specs2.specification.TagsFragments.TaggedAs
+
 
 /**
  * 
@@ -34,14 +36,12 @@ class JavassistPatternTest extends PatternTestBase(ScalaMessagePack)
  */
 class ReflectionPatternTest extends PatternTestBase(ScalaMessagePackForReflection)
 
-abstract class PatternTestBase(messagePack : ScalaMessagePackWrapper) extends SpecificationWithJUnit{
+abstract class PatternTestBase(messagePack : ScalaMessagePackWrapper) extends SpecificationWithJUnit with Tags {
 
   import messagePack._
 
-
-
-  "PrimitiveTypes" should{
-    "encode / decode" in{
+  "PrimitiveTypes" should {
+    "encode / decode" in {
       val o = new PrimitiveTypes
       o.byteVal = 33
       o.intVal = 5829
@@ -53,8 +53,9 @@ abstract class PatternTestBase(messagePack : ScalaMessagePackWrapper) extends Sp
       checkOn(o,"intVal","byteVal","shortVal","longVal","doubleVal","floatVal")
 
       ok
-    }
+    } tag("prim")
   }
+
   "CommonTypes" should{
     "encode / decode" in{
       val o = new CommonTypes
@@ -80,6 +81,7 @@ abstract class PatternTestBase(messagePack : ScalaMessagePackWrapper) extends Sp
 
   }
   */
+
   "Indexing" should{
     "index correctly" in{
       val o = new Indexing()
@@ -92,7 +94,7 @@ abstract class PatternTestBase(messagePack : ScalaMessagePackWrapper) extends Sp
       val data = pack(o)
       val mirror = unpack[IndexingMirror](data)
       decoded must hasEqualProps(mirror).on("zero","one","two","three")
-    }
+    } tag("indexing")
   }
 
   "Inherit" should{
