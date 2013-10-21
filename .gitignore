@@ -1,3 +1,6 @@
+# for sbt
+.lib
+
 # use glob syntax.
 syntax: glob
 *.ser
