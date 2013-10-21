@@ -20,7 +20,7 @@ package org.msgpack
 import `type`.Value
 import annotation.Message
 import org.junit.runner.RunWith
-import org.specs2.mutable.SpecificationWithJUnit
+import org.specs2.mutable.{Tags, SpecificationWithJUnit}
 
 /**
  * 
@@ -28,7 +28,7 @@ import org.specs2.mutable.SpecificationWithJUnit
  * Create: 11/10/12 23:17
  */
 
-class UsageTest extends SpecificationWithJUnit{
+class UsageTest extends SpecificationWithJUnit with Tags {
 
   "Normal usage" should{
 
@@ -54,7 +54,7 @@ class UsageTest extends SpecificationWithJUnit{
       recover.roles.toList must_== user.roles.toList
       recover.profile.gender must_== user.profile.gender
 
-    }
+    } tag("wr")
 
   }
 

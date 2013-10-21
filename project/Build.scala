@@ -16,7 +16,8 @@ object MessagePackScalaBuild extends Build {
         scalaVersion := "2.10.3",
         crossScalaVersions := Seq("2.9.0-1","2.9.1","2.9.1-1","2.9.2","2.10.3"),
         resolvers ++= Seq(Resolver.mavenLocal),
-        parallelExecution in Test := false
+        parallelExecution in Test := false,
+        fork in Test := true
       )
   
   lazy val dependencies = Seq(
